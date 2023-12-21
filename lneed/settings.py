@@ -76,12 +76,20 @@ WSGI_APPLICATION = 'lneed.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+import dj_database_url
+from pathlib import Path
+import os
+
+# ...
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL') or 'postgres://l_need_db_user:5eRugzaeZKukYVIZtyLLtZosgZd86TU0@dpg-cm25v8en7f5s73eskrv0-a.oregon-postgres.render.com/l_need_db'
+    )
 }
+
+# ...
+
 
 
 # Password validation
@@ -128,3 +136,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 import os
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
