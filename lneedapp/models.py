@@ -27,4 +27,8 @@ class UserProfile(models.Model):
     interests = models.TextField(blank=True)
     location = models.CharField(max_length=100, blank=True)
     age = models.IntegerField(default=0)
-    profileImage= models.ImageField(upload_to="profile_images/", blank=True)    
+    profileImage= models.ImageField(upload_to="profile_images/", blank=True)
+
+
+    def __str__(self):
+        return self.username     
